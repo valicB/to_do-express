@@ -16,5 +16,9 @@ task
 1) de creat o forma de inregistrare si una pentru autentificare
 2) de creat forma pentru task (la status - checkbox)
 
-- mongodb osnovi
-- MongoDB casti 2
+Template Engines
+
+npm install swig --save
+
+bower install bootstrap
+bower install font-awesome
