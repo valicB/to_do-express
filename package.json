@@ -12,6 +12,9 @@
   "author": "test",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.15.3"
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "express-validator": "^3.2.1",
+    "swig": "^1.4.2"
   }
 }

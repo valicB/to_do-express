@@ -2,38 +2,49 @@
 {% block content %}
 <div class="container">
   <h3>Registration</h3>
-  <form>
-
+  <form action="/user/create" method="post">
       <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon glyphicon-user"></i></span>
-        <input id="fullname" type="text" class="form-control" name="fulname" placeholder="Fullname">
+        <input id="fullname" type="text" class="form-control" name="fullname" placeholder="Fullname">
       </div>
-
+      {% if error_fullname %}
+      <div class="alert alert-danger">
+        <strong>Error: </strong>{{error_fullname}}
+      </div>
+      {% endif %}
     <br>
-
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">@</span>
         <input id="email" type="text" class="form-control" name="email" placeholder="email">
       </div>
-
+      {% if error_email %}
+      <div class="alert alert-danger">
+        <strong>Error: </strong>{{error_email}}
+      </div>
+      {% endif %}
     <br>
-
       <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon glyphicon-lock"></i></span>
         <input id="password" type="password" class="form-control" name="password" placeholder="Password">
       </div>
-
+      {% if error_password %}
+      <div class="alert alert-danger">
+        <strong>Error: </strong>{{error_password}}
+      </div>
+      {% endif %}
     <br>
-
       <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon glyphicon-lock"></i></span>
-        <input id="repeat_password" type="password" class="form-control" name="repeat_password" placeholder="Repeat password">
+        <input id="repeat_password" type="password" class="form-control" name="cpassword" placeholder="Repeat password">
       </div>
-
+      {% if error_cpass %}
+      <div class="alert alert-danger">
+        <strong>Error: </strong>{{error_cpass}}
+      </div>
+      {% endif %}
     <br>
     <div class="input-group">
       <input type="submit" class="btn btn-info" value="Registration">
-    </div>
     </div>
   </form>
   <br>

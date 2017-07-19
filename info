@@ -22,3 +22,12 @@ npm install swig --save
 
 bower install bootstrap
 bower install font-awesome
+
+sudo npm install --save body-parser (MIDDLEWARE pentru POST)
+sudo npm install express-validator --save
+
+// trim/escaping
+// isEmail
+// regular expression
+
+for login  -> /user/login
