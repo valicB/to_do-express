@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="container">
+  <h3>New task</h3>
+  <form>
+    <div class="container">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon glyphicon-list-alt"></i></span>
+        <input id="titel" type="text" class="form-control" name="title" placeholder="Title">
+      </div>
+    </div>
+    <br>
+    <div class="container">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon glyphicon-comment"></i></span>
+        <textarea id="description" type="text" class="form-control" name="description" placeholder="Description"></textarea>
+      </div>
+    </div>
+    <br>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4">
+          <label class="checkbox-inline">Status: </label>
+        	<label class="checkbox-inline"><input type="checkbox" name="status" value="enable">Enable / Disable</label>
+        </div>
+        <div class='col-sm-4'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" placeholder="Deadline" name="deadline"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 text-right">
+          <input type="submit" class="btn btn-info" value="Create task">
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<script>  $(function () { $('#datetimepicker1').datetimepicker(); });  </script>
+{% endblock %}
