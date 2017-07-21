@@ -49,8 +49,7 @@ app.post('/user/create', (req, res)=>{
       // console.log(result.array()[0].param);
       // console.log(result.array()[0].msg);
       res.render('register-page', {error : result.array()[0].msg});
-
-    } else {res.send('All goods');}
+    } else res.send('All goods');
 
   });
   // if(fullname.length < 3){
