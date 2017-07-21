@@ -35,3 +35,4 @@ for login  -> /user/login
 
 // de facut bara de sus <nav> -> login/logout
 // de facut cu express-session
+// daca esti autentificat, cand apesi pe create task sa apara forma cu TASK
