@@ -25,9 +25,13 @@ bower install font-awesome
 
 sudo npm install --save body-parser (MIDDLEWARE pentru POST)
 sudo npm install express-validator --save
+mpm install cookie-session --save
 
 // trim/escaping
 // isEmail
 // regular expression
 
 for login  -> /user/login
+
+// de facut bara de sus <nav> -> login/logout
+// de facut cu express-session
