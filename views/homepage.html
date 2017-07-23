@@ -1,27 +1,20 @@
 {% extends 'layout.html' %}
 {% block content %}
 <!-- Start -->
-{{onLine}},
-{% if onLine %}
-    Hello {{email}} <br>
-    <a href="/user/logout">Logout</a>
-{% endif %}
     <div class="container">
       <div class="jumbotron">
         <h1>Hello, User!</h1>
         <p>If you want to use our APP</p>
+        <h4>For testing error</h4>
         <p>
-          <a class="btn btn-default btn-lg" href="/register" role="button">Create account</a>
+          <a class="btn btn-default" href="/register" role="button">Create account</a>
           or
-          <a class="btn btn-primary btn-lg" href="/login" role="button">ENTER</a>
-
+          <a class="btn btn-default" href="/login" role="button">Log in</a>
+          or
+          <a class="btn btn-default" href="/create" role="link">Create new task</a>
         </p>
-        <a class="" href="/create" role="link">Create new task</a>
+
       </div>
     </div>
 <!-- End -->
-{% endblock %}
-
-{% block aloha %}
-<h1>aloha</h1>
 {% endblock %}

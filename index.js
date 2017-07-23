@@ -26,15 +26,25 @@ app.set('view cache', false); // express cache
 swig.setDefaults({cache: false}); // swig cache
 
 // ROUTING
+app.get('/create', (req, res)=>{
+  res.render('create-task', {onLine: req.session.is_online, fullname: req.session.fullname});
+});
 app.get('/register', (req, res)=>{
-  res.render('register-page');
+  res.render('register-page', {onLine: req.session.is_online, fullname: req.session.fullname});
 });
 app.get('/login', (req, res)=>{
-  res.render('login-page');
+  res.render('login-page', {onLine: req.session.is_online, fullname: req.session.fullname});
 });
 app.get('/user/logout', (req, res)=>{
-  res.session = null;
-  res.redirect('/login');
+  // res.session = null;
+  req.session.is_online = null
+  res.redirect('/');
+});
+app.post('/task/new', (req, res)=>{
+  res.send('Task was create');
+});
+app.get('/tasks', (req, res)=>{
+  res.render('all-tasks', {onLine: req.session.is_online, fullname: req.session.fullname});
 });
 
 app.post('/user/create', (req, res)=>{
@@ -42,8 +52,6 @@ app.post('/user/create', (req, res)=>{
   // var email     = req.body.email;
   // var password  = req.body.password;
   // var cpassword = req.body.cpassword;
-
-
 
   req.assert('fullname', 'Fullname is required').notEmpty();
   req.assert('email', 'Email is required').notEmpty();
@@ -53,70 +61,41 @@ app.post('/user/create', (req, res)=>{
 
   req.getValidationResult().then(function(result) {
 
-    console.log(result.isEmpty());
+    // console.log(result.isEmpty());
     if (!result.isEmpty()) {
       // console.log(result.array()[0].param);
       // console.log(result.array()[0].msg);
       res.render('register-page', {error : result.array()[0].msg});
-    } else res.send('All goods');
-
+    } else res.send('User was created');
   });
-  // if(fullname.length < 3){
-  //   // error
-  //   res.render('register-page', {error_fullname : 'Fullname must be at least 3 symbols'});
-  // } else if (email.length < 3) {
-  //   res.render('register-page', {error_email : 'Email must be at least 3 symbols'});
-  // }else if (password.length < 3) {
-  //   res.render('register-page', {error_password : 'Password must be at least 3 symbols'});
-  // }else if (password != cpassword) {
-  //   res.render('register-page', {error_cpass : 'The password must be the same'});
-  // }
-  //  else{
-  //   res.send('All goods');
-  // }
-
-  /// 1) sanitization
-  /// 2) validation
-  /// 3) save to database
-
-  // console.log(req.body);
-
 });
-app.post('/user/authenticated', (req, res)=>{
+
+app.post('/user/login', (req, res)=>{
   var fullname  = req.body.fullname;
   var email     = req.body.email;
   var password  = req.body.password;
 
-  req.assert('email', 'Email is required').notEmpty();
-  req.assert('email', 'Invalid email').isEmail();
+  req.assert('fullname', 'Fullname is required').notEmpty();
   req.assert('password', '6 to 20 characters required').len(6, 20);
 
   req.getValidationResult().then(function(result) {
-
-    console.log(result.isEmpty());
     if (!result.isEmpty()) {
-      // console.log(result.array()[0].param);
-      // console.log(result.array()[0].msg);
       res.render('login-page', {error : result.array()[0].msg});
     } else {
         if (
-          email == "admin@email.com" && password == "1234567" ||
-          email == "admin1@email.com" && password == "1234567"
+          fullname == "admin" && password == "1234567" ||
+          fullname == "admin1" && password == "1234567"
       ){
           req.session.is_online = true;
-          req.session.email = email;
+          req.session.fullname = fullname;
           res.redirect('/');
-        } else res.send("Access denied")
-    }
-
+        } else res.render('login-page', {error : 'Bad fullname or password'});
+      }
   });
-
-
 });
 
-
 app.get('/', (req, res)=> {
-  res.render('homepage', {name: "Express", onLine: req.session.is_online, email: req.session.email}); // show this template
+  res.render('homepage', {name: "Express", onLine: req.session.is_online, fullname: req.session.fullname}); // show this template
 });
 
 app.listen(9090, function () {

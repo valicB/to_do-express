@@ -1,11 +1,48 @@
 {% extends 'layout.html' %}
 {% block content %}
+
 <div class="container">
-  <h3>Authentication</h3>
-  <form action="/user/authenticated" method="post">
+{% if !onLine %}
+  <div style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <div class="panel panel-info" >
+      <div class="panel-heading">
+        <div class="panel-title">Log In</div>
+      </div>
+      <div style="padding-top:30px" class="panel-body" >
+      {% if error %}
+        <div class="alert alert-danger col-sm-12"><strong>Error: </strong>{{error}}</div>
+      {% endif %}
+        <form action="/user/login" method="post" class="form-horizontal" role="form">
+          <div style="margin-bottom: 25px" class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input id="login-username" type="text" class="form-control" name="fullname" value="" placeholder="Fullname">
+          </div>
+          <div style="margin-bottom: 25px" class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <input id="login-password" type="password" class="form-control" name="password" placeholder="Password">
+          </div>
+          <div style="margin-bottom: 15px" class="input-group">
+            <input type="submit" class="btn btn-info" value="Log in">
+          </div>
+        </form>
+        <div class="form-group">
+          <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
+              Don't have an account! <a href="/register" >Register Here</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% else %}
+    <div class="alert alert-danger col-sm-12">You're logged in as: <strong>{{fullname}}</strong> </div>
+  {% endif %}
+</div>
+<!--
+  <h3 style="width: 400px; margin: 20px auto 20px auto;">Sign in</h3>
+  <form action="/user/login" method="post" style="width: 400px; margin: auto;">
     <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">@</span>
-      <input id="email" type="text" class="form-control" name="email" placeholder="email">
+      <span class="input-group-addon"><i class="glyphicon glyphicon glyphicon-user"></i></span>
+      <input id="fullname" type="text" class="form-control" name="fullname" placeholder="fullname">
     </div>
     <br>
     <div class="input-group">
@@ -18,11 +55,10 @@
       <strong>Error: </strong>{{error}}
     </div>
     {% endif %}
-    <br>
     <div class="input-group">
-      <input type="submit" class="btn btn-info" value="Log In">
+      <input type="submit" class="btn btn-info" value="Login">
     </div>
 
   </form>
-</div>
+-->
 {% endblock %}

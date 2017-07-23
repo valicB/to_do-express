@@ -1,45 +1,55 @@
 {% extends 'layout.html' %}
 {% block content %}
+
 <div class="container">
-  <h3>New task</h3>
-  <form>
-    <div class="container">
-      <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon glyphicon-list-alt"></i></span>
-        <input id="titel" type="text" class="form-control" name="title" placeholder="Title">
+{% if onLine %}
+  <div style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <div class="panel panel-info" >
+      <div class="panel-heading">
+        <div class="panel-title">New task</div>
       </div>
-    </div>
-    <br>
-    <div class="container">
-      <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon glyphicon-comment"></i></span>
-        <textarea id="description" type="text" class="form-control" name="description" placeholder="Description"></textarea>
-      </div>
-    </div>
-    <br>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-4">
-          <label class="checkbox-inline">Status: </label>
-        	<label class="checkbox-inline"><input type="checkbox" name="status" value="enable">Enable / Disable</label>
-        </div>
-        <div class='col-sm-4'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" placeholder="Deadline" name="deadline"/>
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
+      <div style="padding-top:30px" class="panel-body" >
+        <form action="/task/new" method="post" class="form-horizontal" role="form">
+          <div style="margin-bottom: 25px" class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+            <input id="title" type="text" class="form-control" name="title" placeholder="Title">
+          </div>
+          <div style="margin-bottom: 25px" class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-comment"></i></span>
+            <textarea type="text" class="form-control" name="description" placeholder="Description" rows="4"></textarea>
+          </div>
+          <div style="margin: 25px 0 0 -15px">
+            <div class="col-sm-6">
+              <div class="input-group">
+                <span class="input-group-addon">Status</span>
+                <select class="form-control" id="sel1">
+                  <option>Enable</option>
+                  <option>Disable</option>
+                </select>
+              </div>
+            </div>
+            <div class='col-sm-6'>
+                <div class="form-group">
+                    <div class='input-group date' id='datetimepicker1'>
+                        <input type='text' class="form-control" placeholder="Deadline" name="deadline"/>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-sm-4 text-right">
-          <input type="submit" class="btn btn-info" value="Create task">
-        </div>
+          </div>
+          <div style="margin-top:10px" class="input-group">
+            <input type="submit" class="btn btn-info" value="Login">
+          </div>
+        </form>
       </div>
     </div>
-  </form>
+  </div>
+{% else %}
+  <div class="alert alert-danger col-sm-12"><strong>Error: </strong>Access denied. Please <a href="/login">Log In</a> for access</div>
+{% endif %}
 </div>
 <script>  $(function () { $('#datetimepicker1').datetimepicker(); });  </script>
 {% endblock %}

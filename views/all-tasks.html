@@ -1,0 +1,78 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<div class="container">
+
+  <table class="table table-striped">
+    <thead>
+      <tr class="info">
+      	<th style="width: 25px;">#</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th style="width: 105px;">Created</th>
+        <th style="width: 105px;">Updated</th>
+        <th style="width: 105px;">Deadline</th>
+        <th style="width: 80px;">Status</th>
+        <th style="width: 105px;">Owner</th>
+        {% if onLine %}
+        <th style="width: 105px;">Action</th>
+        {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+      	<td>1</td>
+        <td>Task 1</td>
+        <td>Description of task</td>
+        <td>16.02.2017</td>
+        <td>19.02.2017</td>
+        <td>25.02.2017</td>
+        <td>enable</td>
+        <td>admin</td>
+        {% if onLine %}
+        <td>
+          <a href="#edit" title="edit" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-edit"></i></a>
+           &nbsp;&nbsp;&nbsp;
+          <a href="#remove" title="remove" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i></a>
+        </td>
+        {% endif %}
+      </tr>
+      <tr>
+      	<td>2</td>
+        <td>Task 2</td>
+        <td>Description of task</td>
+        <td>16.02.2017</td>
+        <td>19.02.2017</td>
+        <td>25.02.2017</td>
+        <td>enable</td>
+        <td>admin</td>
+        {% if onLine %}
+        <td>
+          <a href="#edit" title="edit" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-edit"></i></a>
+           &nbsp;&nbsp;&nbsp;
+          <a href="#remove" title="remove" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i></a>
+        </td>
+        {% endif %}
+      </tr>
+      <tr>
+      	<td>3</td>
+        <td>Task 3</td>
+        <td>Description of task</td>
+        <td>16.02.2017</td>
+        <td>19.02.2017</td>
+        <td>25.02.2017</td>
+        <td>enable</td>
+        <td>admin</td>
+        {% if onLine %}
+        <td>
+          <a href="#edit" title="edit" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-edit"></i></a>
+           &nbsp;&nbsp;&nbsp;
+          <a href="#remove" title="remove" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i></a>
+        </td>
+        {% endif %}
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
