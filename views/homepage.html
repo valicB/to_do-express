@@ -3,7 +3,14 @@
 <!-- Start -->
     <div class="container">
       <div class="jumbotron">
-        <h1>Hello, User!</h1>
+        <h1>
+          Hello,
+          {% if onLine %}
+            {{fullname}}!
+          {% else %}
+            User
+          {% endif %}
+        </h1>
         <p>If you want to use our APP</p>
         <h4>For testing error</h4>
         <p>
